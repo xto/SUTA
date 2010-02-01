@@ -1,0 +1,3 @@
+This is just a preliminary commit of an idea for a DSL for PHPUnit. We needed siomething simple to write some tests and couldn't find anything to suit our needs.
+
+We'll try to update this as we go along. For now, use at your own risk.
