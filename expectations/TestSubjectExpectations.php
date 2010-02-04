@@ -25,16 +25,16 @@
         /**
         * @test
         */
-        public function TestSubjectShouldSupportShouldBeTrueExpectation()
+        public function TestSubjectShouldHaveMethod_shouldBeTrue()
         {
             $nicholas = new TestSubject(new DummyUser("Nicholas",true));
-            $nicholas->isRegistered()->shouldBeTrue();
+         	$nicholas->isRegistered()->shouldBeTrue();         
         }
         
         /**
         * @test
         */
-        public function TestSubjectShouldSupportShouldBeFalseExpectation()
+        public function TestSubjectShouldHaveMethod_shouldBeFalse()
         {
             $nicholas = new TestSubject(new DummyUser("Nicholas",false));
             $nicholas->isRegistered()->shouldBeFalse();
@@ -43,7 +43,7 @@
         /**
         * @test
         */
-        public function TestSubjectShouldSupportShouldEqualExpectation()
+        public function TestSubjectShouldHaveMethod_shouldEqual()
         {
             $nicholas = new TestSubject(new DummyUser("Nicholas",true));
             $nicholas->getName()->shouldEqual("Nicholas");
@@ -57,8 +57,6 @@
             $nicholas = new TestSubject(new DummyUser("Nicholas",true));
             self::assertEquals($nicholas->__toString(), "Nicholas");
         }
-        
-        
         
     }
 
