@@ -1,6 +1,6 @@
 This is just a preliminary commit of an idea for a DSL for PHPUnit. 
 
-We needed siomething simple to write some tests and couldn't find anything to suit our needs.
+We needed something simple to write some tests and couldn't find anything to suit our needs.
 
 What we're trying to achieve is a simple syntax for unit test and eventually driving Selenium to do UI testing.
 
