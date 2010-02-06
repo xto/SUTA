@@ -90,7 +90,50 @@
 			}
 			
         }
+        
+        public function ShouldBeNullShouldBehaveLikeAssertNull()
+        {
+        	Expectations::shouldBeNull(null);
+        	self::assertNull(null);
+        		
+        	try {
+        		self::assertNull("Something that isn't null");
+        		throw new Exception("assertNull should fail if something not null");	
+        	}
+        	catch (PHPUnit_Framework_ExpectationFailedException $e) 
+        	{
+        	}
+        	
+        	try {
+        		Expectations::shouldBeNull("Something that isn't null");
+        		throw new Exception("shouldBeNull should fail if something not null");	
+        	}
+        	catch (PHPUnit_Framework_ExpectationFailedException $e) 
+        	{
+        	}
+        }
 	 	
+        public function ShouldNotBeNullShouldBehaveLikeAssertNotNull()
+        {
+        	self::assertNotNull("Something not null");
+        	Expectations::shouldNotBeNull("Something not null");
+        	
+        	try {
+        		self::assertNotNull(null);
+        		throw new Exception("assertNotNull should fail if something null");
+        	}
+        	catch (PHPUnit_Framework_ExpectationFailedException $e) 
+        	{
+        	}
+        	
+        	try {
+        		Expectations::shouldNotNull(null);
+        		throw new Exception("shoulNotdBeNull should fail if something null");
+        	}
+        	catch (PHPUnit_Framework_ExpectationFailedException $e) 
+        	{
+        	}
+        }
 	 }
 
 
