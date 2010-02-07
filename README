@@ -15,7 +15,7 @@ and()->clicks(Button::login)->and()->shouldBeLoggedin();
 This type of syntax should hopefully help people who aren't developers understand and write some tests.
 
 
-As fare as UnitTesting is concerned, we are trying to approach it with the BDD philosophy.
+As far as UnitTesting is concerned, we are trying to approach it with the BDD philosophy.
 Using this PHPUnit ADD-ON, the testing syntax for expectations would now look like this 
 
 $nicholas = new TestSubject(new DummyUser("Nicholas",true));
