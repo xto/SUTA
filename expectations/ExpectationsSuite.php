@@ -19,8 +19,10 @@
 	*/
 	
 	require_once 'PHPUnit/Framework.php';
+	require_once 'PHPUnit/Extensions/SeleniumTestCase.php';
 	require_once 'expectations/ExpectationsExpectations.php';
 	require_once 'expectations/TestSubjectExpectations.php';
+	require_once 'selenium_expectations/SeleniumTestSubjectExpectations.php';
 	
 	class ExpectationsSuite
 	{
@@ -30,6 +32,7 @@
 	        
 			$suite->addTestSuite('ExpectationsExpectations');
 	 		$suite->addTestSuite('TestSubjectExpectations');
+	 		$suite->addTestSuite('SeleniumTestSubjectExpectations');
 	 		
 	        return $suite;
 	    }

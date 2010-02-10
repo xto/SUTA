@@ -1,11 +1,12 @@
 <?php
 	require_once 'Testing/Selenium.php';
-	require_once 'Expectations.php';
+	require_once dirname(__FILE__).'/../Expectations.php';
 	class SeleniumTestSubject
 	{
 		
 		private $selenium;
 		private $lastKnownLocator;
+		
 		
 		public function __construct($browser,$website)
 		{
@@ -14,6 +15,14 @@
 			return $this;
 		}
 		
+		public function destroy()
+		{
+			$this->selenium->close();
+			$this->selenium->stop();
+		}
+		/**
+		 * Actions
+		 */
 		public function goesTo($url)
 		{
 			$this->selenium->open($url);
@@ -77,8 +86,40 @@
 		public function from($dropdown_list_locator)
 		{
 			Expectations::shouldNotBeNull($this->lastKnownLocator,"Nowhere to pick from... Please specify where to find the selection.");
-			$this->selenium->select($dropdown_list_locator,$this->lastKnownLocator);	
+			$this->selenium->select($dropdown_list_locator,'label='.$this->lastKnownLocator);
+			$this->lastKnownLocator = null;	
 		}
+		
+
+		/**
+		 * Expectations
+		 */
+		public function shouldSee($element_locator, $message = "Element was not found! Verify that the locator is correct!" ){
+			Expectations::shouldBeTrue($this->selenium->isElementPresent($element_locator),$message );
+			$this->lastKnownLocator = $element_locator;
+			return $this;	
+		}
+		
+		public function withText($expected_text)
+		{
+			Expectations::shouldNotBeNull($this->lastKnownLocator,"No element was specified. Did you forget the call to shouldSee ?");
+			Expectations::shouldEqual($this->selenium->getText($this->lastKnownLocator), $expected_text);
+			$this->lastKnownLocator = null;
+		}
+		
+		public function checked()
+		{
+			Expectations::shouldNotBeNull($this->lastKnownLocator,"No element was specified. Did you forget the call to shouldSee ?");
+			Expectations::shouldBeTrue($this->selenium->isChecked($this->lastKnownLocator));
+			$this->lastKnownLocator = null;
+		}
+		
+		public function selected()
+		{
+			Expectations::shouldEqual($this->selenium->getValue($this->lastKnownLocator), $this->selenium->getSelectedLabel($this->lastKnownLocator."/.."));
+			$this->lastKnownLocator = null;
+		}
+		
 		
 	}
 ?>
