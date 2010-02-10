@@ -119,7 +119,11 @@
 			Expectations::shouldEqual($this->selenium->getValue($this->lastKnownLocator), $this->selenium->getSelectedLabel($this->lastKnownLocator."/.."));
 			$this->lastKnownLocator = null;
 		}
-		
+
+                public function shouldBeOnPage($expected_url)
+                {
+                        Expectations::shouldEqual($this->selenium->getLocation(), $expected_url);
+		}
 		
 	}
 ?>
