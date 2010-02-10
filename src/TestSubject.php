@@ -24,7 +24,8 @@
 
         public function __construct($subject)
         {
-            $this->__subject = $subject;         
+            $this->__subject = $subject; 
+                
         }
 
         function __call($method_name, $args)
