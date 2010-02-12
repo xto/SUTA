@@ -36,15 +36,20 @@
 	        self::assertEquals($expected, $actual, $message);
 	    }
 	    
-		public static function shouldBeNull($value, $message = '')
+	    public static function shouldBeNull($value, $message = '')
 	    {
 	        self::assertNull($value, $message);
 	    }
 	    
-		public static function shouldNotBeNull($value, $message = '')
+	    public static function shouldNotBeNull($value, $message = '')
 	    {
 	        self::assertNotNull($value, $message);
 	    }
+
+            public static function shouldContain($pattern, $value, $message = '')
+            {
+                self::assertContains($pattern, $value, $message);
+            }
 	}
 
 
