@@ -133,7 +133,7 @@
         	}
         	
         	try {
-        		Expectations::shouldNotNull(null);
+        		Expectations::shouldNotBeNull(null);
         		throw new Exception("shoulNotdBeNull should fail if something null");
         	}
         	catch (PHPUnit_Framework_ExpectationFailedException $e) 
