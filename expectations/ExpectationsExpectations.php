@@ -66,7 +66,7 @@
         /**
         * @test
         */
-        public function ShouldEqualShouldBehaveLikeAsserEqual()
+        public function ShouldEqualShouldBehaveLikeAssertEqual()
         {
         	self::assertEquals("tom","tom");
         	Expectations::shouldEqual("tom","tom");
@@ -91,6 +91,9 @@
 			
         }
         
+        /**
+        * @test
+        */
         public function ShouldBeNullShouldBehaveLikeAssertNull()
         {
         	Expectations::shouldBeNull(null);
@@ -112,7 +115,10 @@
         	{
         	}
         }
-	 	
+	
+        /**
+        * @test
+        */ 	
         public function ShouldNotBeNullShouldBehaveLikeAssertNotNull()
         {
         	self::assertNotNull("Something not null");
@@ -134,7 +140,16 @@
         	{
         	}
         }
-	 }
+        
+        /**
+        * @test
+        */
+        public function ShouldContainShouldBehaveLikeAssertContains()
+        {
+            self::assertContains("tom","tom petty");
+            Expectations::shouldContain("tom", "tom petty");
+        }
+    }
 
 
 ?>
