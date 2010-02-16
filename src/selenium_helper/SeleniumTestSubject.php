@@ -126,7 +126,7 @@
 		public function withText($expected_text)
 		{
 			Expectations::shouldNotBeNull($this->lastKnownLocator,"No element was specified. Did you forget the call to shouldSee ?");
-			Expectations::shouldEqual($this->selenium->getText($this->lastKnownLocator), $expected_text);
+			Expectations::shouldContain($expected_text,$this->selenium->getText($this->lastKnownLocator));
 			$this->lastKnownLocator = null;
 		}
 		
@@ -142,7 +142,11 @@
 			Expectations::shouldEqual($this->selenium->getValue($this->lastKnownLocator), $this->selenium->getSelectedLabel($this->lastKnownLocator."/.."));
 			$this->lastKnownLocator = null;
 		}
-		
+
+                public function shouldBeOnPage($expected_url)
+                {
+                        Expectations::shouldEqual($this->selenium->getLocation(), $expected_url);
+		}
 		
 	}
 ?>
