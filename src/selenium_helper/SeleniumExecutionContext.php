@@ -62,7 +62,7 @@
         private function __startSelenium()
         {
             $this->__selenium->start();
-             $this->__isStarted = true;
+             $this->__isInitialized = true;
         }
         
         private function __stopSelenium()

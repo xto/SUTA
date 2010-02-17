@@ -18,8 +18,6 @@
 			$this->__seleniumActions = new SeleniumActions($this->__seleniumExecutionContext);
 			$this->__seleniumExpectations = new SeleniumExpectations($this->__seleniumExecutionContext);
 			$this->__seleniumExecutionContext->initialize();
-			
-			
 		}
 				
 		public function destroy()
