@@ -1,74 +1,96 @@
 <?php
-	class SeleniumActions
-	{
-		public function goesTo($url)
-		{
-			$this->selenium->open($url);
-			return $this;	
-		}
-		
-		public function fillsOut($text_field_locator)
-		{
-			$this->lastKnownLocator = $text_field_locator;
-			return $this;
-		}
-		
-		public function with($value)
-		{
-			Expectations::shouldNotBeNull($this->lastKnownLocator,"Nowhere to type... Please specify where to type.");
-			$this->selenium->type($this->lastKnownLocator,$value);
-			$this->lastKnownLocator = null;
-			return $this;
-		}
-		
-		public function clicks($locator)
-		{
-			$this->selenium->click($locator);
-			return $this;	
-		}
-		
-		public function and_then()
-		{
-			return $this;
-		}
-		
-		public function waitsForPageToLoad()
-		{
-			$this->selenium->waitForPageToLoad(30000);
-		}
-		
-		public function drags($objects_locator)
-		{
-			$this->lastKnownLocator = $locator;
-			return $this;
-		}
-		
-		public function dropsOn($destinations_locator)
-		{
-			Expectations::shouldNotBeNull($this->lastKnownLocator,"Nowhere to drop... Please specify where to drop the object.");
-			$this->selenium->dragAndDropToObject($this->lastKnownLocator,$destinations_locator);
-			return $this;
-		}
-		
-		public function checks($checkbox_or_radio_button_locator)
-		{
-			return $this->clicks($checkbox_or_radio_button_locator);
-		}
-		
-		public function selects($value)
-		{
-			$this->lastKnownLocator = $value;
-			return $this;		
-		}
-		
-		public function from($dropdown_list_locator)
-		{
-			Expectations::shouldNotBeNull($this->lastKnownLocator,"Nowhere to pick from... Please specify where to find the selection.");
-			$this->selenium->select($dropdown_list_locator,'label='.$this->lastKnownLocator);
-			$this->lastKnownLocator = null;	
-		}
-		
 
-		
-	}
+
+    class SeleniumActions
+    {
+    	private $__seleniumExecutionContext;
+    	
+    	public function __construct($seleniumExecutionContext)
+        {
+            $this->__seleniumExecutionContext= $seleniumExecutionContext;                           
+        }
+        
+        private function __getLastVisitedLocation()
+        {
+            return $this->__seleniumExecutionContext->getLastVisitedLocation();
+        }
+            
+        private function __getSelenium()
+        {
+        	return $this->__seleniumExecutionContext->getSelenium();
+        }
+        
+    	private function __setLastVisitedLocation($location)
+    	{
+    		 $this->__seleniumExecutionContext->setLastVisitedLocation($location);
+    	}
+
+    	private function __resetLastVisitedLocation()
+    	{
+    		 $this->__seleniumExecutionContext->resetLastVisitedLocation();
+    	}
+    	
+        public function goesTo($url)
+        {
+            $this->__getSelenium()->open($url);
+        }
+        
+        public function fillsOut($text_field_locator)
+        {
+            $this->__setLastVisitedLocation($text_field_locator);
+        }
+        
+        public function with($value)
+        {
+            Expectations::shouldNotBeNull($this->__getLastVisitedLocation(),"Nowhere to type... Please specify where to type.");
+            $this->__getSelenium()->type($this->__getLastVisitedLocation(), $value);
+            $this->__resetLastVisitedLocation();
+        }
+        
+        public function clicks($locator)
+        {
+            $this->__getSelenium()->click($locator);
+        }
+        
+        public function and_then()
+        {
+        }
+        
+        public function waitsForPageToLoad()
+        {
+            $this->__getSelenium()->waitForPageToLoad(30000);
+        }
+        
+        public function drags($objects_locator)
+        {
+            $this->__setLastVisitedLocation($objects_locator);
+        }
+        
+        public function dropsOn($destinations_locator)
+        {
+            Expectations::shouldNotBeNull($this->__getLastVisitedLocation(),"Nowhere to drop... Please specify where to drop the object.");
+            $this->__getSelenium()->dragAndDropToObject($this->__getLastVisitedLocation(),$destinations_locator);
+        }
+        
+        public function checks($checkbox_or_radio_button_locator)
+        {
+            $this->clicks($checkbox_or_radio_button_locator);
+        }
+        
+        public function selects($value)
+        {
+            $this->__setLastVisitedLocation($value);            
+        }
+        
+        public function from($dropdown_list_locator)
+        {
+            Expectations::shouldNotBeNull($this->__getLastVisitedLocation,"Nowhere to pick from... Please specify where to find the selection.");
+            $this->__getSelenium()->select($dropdown_list_locator,'label='.$this->__getLastVisitedLocation());
+            $this->__resetLastVisitedLocation(); 
+        }
+        
+        
+        
+    }
+
 ?>
