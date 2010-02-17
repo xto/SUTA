@@ -6,17 +6,18 @@ What we're trying to achieve is a simple syntax for unit test and eventually dri
 
 The syntax will be something like
 
-$bob = new SeleniumDrivenUser();
+$context = new SeleniumExecutionContext("firefox","http://www.google.com");
+$bob = new SeleniumDrivenUser($context);
 
-$bob->logs_in()->and()->fills_out(Field::username)->with("bob")->
-and()->fills_out(Field::password)->with("qwerty")->
-and()->clicks(Button::login)->and()->shouldBeLoggedin();
+$bob->logs_in()->andThen()->fills_out(Field::username)->with("bob")->
+andThen()->fills_out(Field::password)->with("qwerty")->
+andThen()->clicks(Button::login)->andThen()->shouldBeLoggedin();
 
 This type of syntax should hopefully help people who aren't developers understand and write some tests.
 
 
 As far as UnitTesting is concerned, we are trying to approach it with the BDD philosophy.
-Using this PHPUnit ADD-ON, the testing syntax for expectations would now look like this 
+Using this PHPUnit ADD-ON, the testing syntax for expectations now looks like this : 
 
 $nicholas = new TestSubject(new DummyUser("Nicholas",true));
 $nicholas->getName()->shouldEqual("Nicholas");
