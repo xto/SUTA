@@ -1,24 +1,24 @@
 <?php
 
-	require_once 'src/selenium_helper/SeleniumTestSubject.php';
+	require_once 'src/selenium_helper/SeleniumDrivenUser.php';
 	
 	class SeleniumTestSubjectExpectations extends PHPUnit_Framework_TestCase
 	{
-		private static $selenium_test_subject;
+		private static $selenium_driven_user;
 		
 		public static function setUpBeforeClass()
     	{
-	        self::$selenium_test_subject = new SeleniumTestSubject("firefox","file:///home/xto/projects/SUTA/expectations/selenium_expectations/selenium_test_page.html");
+	        self::$selenium_driven_user = new SeleniumDrivenUser("firefox","file:///home/xto/projects/SUTA/expectations/selenium_expectations/selenium_test_page.html");
 		}
 		
 		public static function tearDownAfterClass()
 		{
-			self::$selenium_test_subject->destroy();
+			self::$selenium_driven_user->destroy();
 		}
 		
 		public function setUp()
 		{
-			self::$selenium_test_subject->goesTo("file:///home/xto/projects/SUTA/expectations/selenium_expectations/selenium_test_page.html");
+			self::$selenium_driven_user->goesTo("file:///home/xto/projects/SUTA/expectations/selenium_expectations/selenium_test_page.html");
 		}
 		
 		/**
@@ -28,7 +28,7 @@
 		{
 			try
 			{
-				self::$selenium_test_subject->shouldSee("id('non_existant_id')");
+				self::$selenium_driven_user->shouldSee("id('non_existant_id')");
 				self::fail("shouldSee should have failed");
 			}
 			catch(Exception $e){}
@@ -39,7 +39,7 @@
 		 */
 		public function shouldSeeShouldSucceedWhenElementIsFound()
 		{
-			self::$selenium_test_subject->shouldSee("//*[id('test_span')]");
+			self::$selenium_driven_user->shouldSee("//*[id('test_span')]");
 		}
 		
 		/**
@@ -49,7 +49,7 @@
 		{
 			try
 			{
-				self::$selenium_test_subject->shouldSee("//span[@id('test_span')]")->withText("Text that isn't there");
+				self::$selenium_driven_user->shouldSee("//span[@id('test_span')]")->withText("Text that isn't there");
 				self::fail("withText should have failed");
 			}
 			catch(Exception $e){}
@@ -60,7 +60,7 @@
 		 */
 		public function withTextShouldSucceedIfTextMatchesParameter()
 		{
-			self::$selenium_test_subject->shouldSee("//span[id('test_span')]")->withText("Text");
+			self::$selenium_driven_user->shouldSee("//span[id('test_span')]")->withText("Text");
 		}
 		
 		/**
@@ -70,7 +70,7 @@
 		{
 			try
 			{
-				self::$selenium_test_subject->shouldSee("//span[id('test_span')]")->checked();
+				self::$selenium_driven_user->shouldSee("//span[id('test_span')]")->checked();
 				self::fail("checked should have failed");
 			}
 			catch(Exception $e){}
@@ -81,8 +81,8 @@
 		 */
 		public function checkedShouldSucceedIfElementIsACheckboxThatIsChecked()
 		{
-			self::$selenium_test_subject->clicks("//input[@name='test_checkbox']");
-			self::$selenium_test_subject->shouldSee("//input[@name='test_checkbox']")->checked();
+			self::$selenium_driven_user->clicks("//input[@name='test_checkbox']");
+			self::$selenium_driven_user->shouldSee("//input[@name='test_checkbox']")->checked();
 				
 		}
 		
@@ -91,8 +91,8 @@
 		 */
 		public function checkedShouldSucceedIfElementIsARadiobuttonThatIsChecked()
 		{
-			self::$selenium_test_subject->clicks("//input[@name='test_radio']");
-			self::$selenium_test_subject->shouldSee("//input[@name='test_radio']")->checked();
+			self::$selenium_driven_user->clicks("//input[@name='test_radio']");
+			self::$selenium_driven_user->shouldSee("//input[@name='test_radio']")->checked();
 				
 		}
 		
@@ -103,7 +103,7 @@
 		{
 			try
 			{
-				self::$selenium_test_subject->shouldSee("//input[@name='test_checkbox']")->checked();
+				self::$selenium_driven_user->shouldSee("//input[@name='test_checkbox']")->checked();
 				self::fail("checked should have failed");
 			}
 			catch(Exception $e){}
@@ -116,7 +116,7 @@
 		{
 			try
 			{
-				self::$selenium_test_subject->shouldSee("//input[@name='test_radio']")->checked();
+				self::$selenium_driven_user->shouldSee("//input[@name='test_radio']")->checked();
 				self::fail("checked should have failed");
 			}
 			catch(Exception $e){}
@@ -129,8 +129,8 @@
 		{
 			try
 			{
-				self::$selenium_test_subject->selects("Unknown Option")->from("test_select");
-				self::$selenium_test_subject->shouldSee("//select/option[2]")->selected();
+				self::$selenium_driven_user->selects("Unknown Option")->from("test_select");
+				self::$selenium_driven_user->shouldSee("//select/option[2]")->selected();
 				self::fail("selected should have failed");
 			}
 			catch(Exception $e){}
@@ -143,8 +143,8 @@
 		{
 			try
 			{
-				self::$selenium_test_subject->selects("Option")->from("test_select");
-				self::$selenium_test_subject->shouldSee("//select/option[1]")->selected();
+				self::$selenium_driven_user->selects("Option")->from("test_select");
+				self::$selenium_driven_user->shouldSee("//select/option[1]")->selected();
 				self::fail("selected should have failed");
 			}
 			catch(Exception $e){}
@@ -155,8 +155,8 @@
 		 */
 		public function selectedShouldSucceedWhenOptionIsSelected()
 		{
-				self::$selenium_test_subject->selects("Option 2")->from("test_select");
-				self::$selenium_test_subject->shouldSee("//select/option[2]")->selected();
+				self::$selenium_driven_user->selects("Option 2")->from("test_select");
+				self::$selenium_driven_user->shouldSee("//select/option[2]")->selected();
 		}
 	}
 ?>

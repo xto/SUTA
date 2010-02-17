@@ -32,7 +32,7 @@
 	        
 			$suite->addTestSuite('ExpectationsExpectations');
 	 		$suite->addTestSuite('TestSubjectExpectations');
-	 		$suite->addTestSuite('SeleniumTestSubjectExpectations');
+	 		//$suite->addTestSuite('SeleniumTestSubjectExpectations');
 	 		
 	        return $suite;
 	    }
