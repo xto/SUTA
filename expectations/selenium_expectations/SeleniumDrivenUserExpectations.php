@@ -9,7 +9,7 @@
 		
 		public static function setUpBeforeClass()
     	{
-	        self::$selenium_execution_context = new SeleniumExecutionContext("firefox","file:///home/nick/workspacePHP/SUTA/expectations/selenium_expectations/selenium_test_page.html"); 
+	        self::$selenium_execution_context = new SeleniumExecutionContext("firefox","file:///home/xto/projects/SUTA/expectations/selenium_expectations/selenium_test_page.html"); 
     		self::$selenium_driven_user = new SeleniumDrivenUser(self::$selenium_execution_context);
 		}
 		
@@ -20,7 +20,7 @@
 		
 		public function setUp()
 		{
-			self::$selenium_driven_user->goesTo("file:///home/nick/workspacePHP/SUTA/expectations/selenium_expectations/selenium_test_page.html");
+			self::$selenium_driven_user->goesTo("file:///home/xto/projects/SUTA/expectations/selenium_expectations/selenium_test_page.html");
 		}
 		
 		/**

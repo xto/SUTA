@@ -32,9 +32,8 @@
 	        
 			$suite->addTestSuite('ExpectationsExpectations');
 	 		$suite->addTestSuite('TestSubjectExpectations');
-	 		//$suite->addTestSuite('SeleniumTestSubjectExpectations');
-	 		
-	        return $suite;
+	 		$suite->addTestSuite('SeleniumDrivenUserExpectations');
+	 		return $suite;
 	    }
 	}
 
