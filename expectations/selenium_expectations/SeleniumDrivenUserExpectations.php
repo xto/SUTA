@@ -1,14 +1,16 @@
 <?php
 
 	require_once 'src/selenium_helper/SeleniumDrivenUser.php';
-	
-	class SeleniumTestSubjectExpectations extends PHPUnit_Framework_TestCase
+	require_once 'src/selenium_helper/SeleniumExecutionContext.php';
+	class SeleniumDrivenUserExpectations extends PHPUnit_Framework_TestCase
 	{
+		private static $selenium_execution_context;
 		private static $selenium_driven_user;
 		
 		public static function setUpBeforeClass()
     	{
-	        self::$selenium_driven_user = new SeleniumDrivenUser("firefox","file:///home/xto/projects/SUTA/expectations/selenium_expectations/selenium_test_page.html");
+	        self::$selenium_execution_context = new SeleniumExecutionContext("firefox","file:///home/nick/workspacePHP/SUTA/expectations/selenium_expectations/selenium_test_page.html"); 
+    		self::$selenium_driven_user = new SeleniumDrivenUser(self::$selenium_execution_context);
 		}
 		
 		public static function tearDownAfterClass()
@@ -18,7 +20,7 @@
 		
 		public function setUp()
 		{
-			self::$selenium_driven_user->goesTo("file:///home/xto/projects/SUTA/expectations/selenium_expectations/selenium_test_page.html");
+			self::$selenium_driven_user->goesTo("file:///home/nick/workspacePHP/SUTA/expectations/selenium_expectations/selenium_test_page.html");
 		}
 		
 		/**

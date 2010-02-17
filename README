@@ -6,7 +6,7 @@ What we're trying to achieve is a simple syntax for unit test and eventually dri
 
 The syntax will be something like
 
-$bob = new User();
+$bob = new SeleniumDrivenUser();
 
 $bob->logs_in()->and()->fills_out(Field::username)->with("bob")->
 and()->fills_out(Field::password)->with("qwerty")->
