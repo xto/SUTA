@@ -84,7 +84,7 @@
         
         public function from($dropdown_list_locator)
         {
-            Expectations::shouldNotBeNull($this->__getLastVisitedLocation,"Nowhere to pick from... Please specify where to find the selection.");
+            Expectations::shouldNotBeNull($this->__getLastVisitedLocation(),"Nowhere to pick from... Please specify where to find the selection.");
             $this->__getSelenium()->select($dropdown_list_locator,'label='.$this->__getLastVisitedLocation());
             $this->__resetLastVisitedLocation(); 
         }
