@@ -34,7 +34,7 @@
 			$this->__setLastVisitedLocation($element_locator);
 		}
 
-	    public function shouldNotSee($element_locator, $message = "Element was not found! Verify that the locator is correct!" ){
+	    public function shouldNotSee($element_locator, $message = "Element was found! Verify that the locator is correct and that it should not be found !!!" ){
 			Expectations::shouldBeFalse($this->__getSelenium()->isElementPresent($element_locator),$message );
 			$this->__setLastVisitedLocation($element_locator);
 		}
