@@ -1,4 +1,4 @@
- 
+
 <?php
 	/*
     Copyright 2010 Nicholas Lemay, Xavier Tô, Francis Falardeau
@@ -17,19 +17,19 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-	
+
 	require_once 'PHPUnit/Framework.php';
 	require_once 'PHPUnit/Extensions/SeleniumTestCase.php';
 	require_once 'expectations/ExpectationsExpectations.php';
 	require_once 'expectations/TestSubjectExpectations.php';
 	require_once 'selenium_expectations/SeleniumDrivenUserExpectations.php';
-	
+
 	class ExpectationsSuite
 	{
 	    public static function suite()
 	    {
 	        $suite = new PHPUnit_Framework_TestSuite('Project SUTA');
-	        
+
 			$suite->addTestSuite('ExpectationsExpectations');
 	 		$suite->addTestSuite('TestSubjectExpectations');
 	 		$suite->addTestSuite('SeleniumDrivenUserExpectations');
@@ -37,5 +37,5 @@
 	    }
 	}
 
-	
+
 ?>

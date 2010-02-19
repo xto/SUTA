@@ -6,23 +6,23 @@
 	{
 		private static $selenium_execution_context;
 		private static $selenium_driven_user;
-		
+
 		public static function setUpBeforeClass()
     	{
-	        self::$selenium_execution_context = new SeleniumExecutionContext("firefox","file:///home/xto/projects/SUTA/expectations/selenium_expectations/selenium_test_page.html"); 
+	        self::$selenium_execution_context = new SeleniumExecutionContext("firefox","file:///home/smpdev/SUTA/expectations/selenium_expectations/selenium_test_page.html");
     		self::$selenium_driven_user = new SeleniumDrivenUser(self::$selenium_execution_context);
 		}
-		
+
 		public static function tearDownAfterClass()
 		{
 			self::$selenium_driven_user->destroy();
 		}
-		
+
 		public function setUp()
 		{
-			self::$selenium_driven_user->goesTo("file:///home/xto/projects/SUTA/expectations/selenium_expectations/selenium_test_page.html");
+			self::$selenium_driven_user->goesTo("file:///home/smpdev/SUTA/expectations/selenium_expectations/selenium_test_page.html");
 		}
-		
+
 		/**
 		 * @test
 		 */
@@ -35,7 +35,7 @@
 			}
 			catch(Exception $e){}
 		}
-		
+
 		/**
 		 * @test
 		 */
@@ -43,7 +43,30 @@
 		{
 			self::$selenium_driven_user->shouldSee("//*[id('test_span')]");
 		}
-		
+
+		/**
+		 * @test
+		 */
+		public function shouldNotSeeShouldSucceedWhenElementIsNotFound()
+		{
+		    self::$selenium_driven_user->shouldNotSee("//*[id('id_that_dont_exist')]");
+		}
+
+		/**
+		 * @test
+		 */
+		public function shouldNotSeeShouldFailWhenElementIsFound()
+		{
+		    try
+		    {
+		        self::$selenium_driven_user->shouldNotSee("//*[id('test_span')]");
+		        self::fail("shouldNotSee should have failed");
+		    }
+		    catch (Exception $e)
+		    {
+		    }
+		}
+
 		/**
 		 * @test
 		 */
@@ -56,7 +79,7 @@
 			}
 			catch(Exception $e){}
 		}
-		
+
 		/**
 		 * @test
 		 */
@@ -64,7 +87,7 @@
 		{
 			self::$selenium_driven_user->shouldSee("//span[id('test_span')]")->withText("Text");
 		}
-		
+
 		/**
 		 * @test
 		 */
@@ -77,7 +100,7 @@
 			}
 			catch(Exception $e){}
 		}
-		
+
 		/**
 		 * @test
 		 */
@@ -85,9 +108,9 @@
 		{
 			self::$selenium_driven_user->clicks("//input[@name='test_checkbox']");
 			self::$selenium_driven_user->shouldSee("//input[@name='test_checkbox']")->checked();
-				
+
 		}
-		
+
 		/**
 		 * @test
 		 */
@@ -95,9 +118,9 @@
 		{
 			self::$selenium_driven_user->clicks("//input[@name='test_radio']");
 			self::$selenium_driven_user->shouldSee("//input[@name='test_radio']")->checked();
-				
+
 		}
-		
+
 		/**
 		 * @test
 		 */
@@ -110,7 +133,7 @@
 			}
 			catch(Exception $e){}
 		}
-		
+
 		/**
 		 * @test
 		 */
@@ -123,7 +146,7 @@
 			}
 			catch(Exception $e){}
 		}
-		
+
 		/**
 		 * @test
 		 */
@@ -137,7 +160,7 @@
 			}
 			catch(Exception $e){}
 		}
-		
+
 		/**
 		 * @test
 		 */
@@ -151,7 +174,7 @@
 			}
 			catch(Exception $e){}
 		}
-		
+
 		/**
 		 * @test
 		 */
