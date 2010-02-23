@@ -1,7 +1,7 @@
 <?php
 
 	 require_once 'src/Expectations.php';
-
+     
 	 class ExpectationsExpectations extends PHPUnit_Framework_TestCase
 	 {
 
@@ -216,6 +216,37 @@
         	{
         	}
         }
+        
+        /**
+         * @test
+         */
+        public function ShouldRaiseExceptionShouldPassWhenExceptationRaisedMatchsExpectedException()
+        {
+        	$expected = new Exception("patate");
+        	$actual = $expected;
+        	Expectations::shouldRaiseException($actual, $expected);
+        }
+        
+        
+	     /**
+         * @test
+         */
+        public function ShouldRaiseExceptionShouldFailWhenExceptationRaisedDoesNotMatchExpectedException()
+        {
+            $expected = new Exception("potato");
+            $actual = new ErrorException("potato");
+            try
+            {
+            	 Expectations::shouldRaiseException($actual, $expected);
+            	 throw new Exception("shouldRaiseException() Should Fail When Exceptation Raised Does Not Match Expected Exception");
+            }catch (PHPUnit_Framework_ExpectationFailedException $e)
+            {
+            }
+           
+        }
+        
+        
+        
     }
 
 

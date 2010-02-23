@@ -59,6 +59,11 @@
         {
             self::assertNotContains($pattern, $value, $message);
         }
+        
+        public static function shouldRaiseException($actual, $expected, $message="")
+        {
+        	self::assertEquals(get_class($actual),get_class($expected), $message);
+        }
 
 	}
 
