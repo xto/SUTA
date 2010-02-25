@@ -8,19 +8,20 @@
 	{
 		private static $selenium_execution_context;
 		private static $selenium_driven_user;
+		private static $selenium_test_page_path;
 
 		public static function setUpBeforeClass()
-    	        {
-                    $configuration = new Configuration();
-    		    self::$selenium_test_page_path = $configuration->getSeleniumTestPagePath(); 
+        {
+        	$configuration = new Configuration();
+    		self::$selenium_test_page_path = $configuration->getSeleniumTestPagePath(); 
 
-	            self::$selenium_execution_context = new SeleniumExecutionContext("firefox","file://".self::$selenium_test_page_path);
-    		    self::$selenium_driven_user = new SeleniumDrivenUser(self::$selenium_execution_context);
+	        self::$selenium_execution_context = new SeleniumExecutionContext("firefox","file://".self::$selenium_test_page_path);
+    		self::$selenium_driven_user = new SeleniumDrivenUser(self::$selenium_execution_context);
 		}
 
 		public static function tearDownAfterClass()
 		{
-			self::$selenium_driven_user->destroy();
+			self::$selenium_driven_user->destroy(); 
 		}
 
 		public function setUp()
