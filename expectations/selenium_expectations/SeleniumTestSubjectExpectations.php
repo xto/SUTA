@@ -1,14 +1,18 @@
 <?php
 
 	require_once 'src/selenium_helper/SeleniumTestSubject.php';
+	require_once 'configuration/Configuration.php';
 	
 	class SeleniumTestSubjectExpectations extends PHPUnit_Framework_TestCase
 	{
 		private static $selenium_test_subject;
+		private static $selenium_test_page_path;
 		
 		public static function setUpBeforeClass()
     	{
-	        self::$selenium_test_subject = new SeleniumTestSubject("firefox","file:///home/xto/projects/SUTA/expectations/selenium_expectations/selenium_test_page.html");
+    		$configuration = new Configuration();
+    		self::$selenium_test_page_path = $configuration->getSeleniumTestPagePath(); 
+	        self::$selenium_test_subject = new SeleniumTestSubject("firefox","file://".self::$selenium_test_page_path); 
 		}
 		
 		public static function tearDownAfterClass()
@@ -18,7 +22,7 @@
 		
 		public function setUp()
 		{
-			self::$selenium_test_subject->goesTo("file:///home/xto/projects/SUTA/expectations/selenium_expectations/selenium_test_page.html");
+			self::$selenium_test_subject->goesTo("file://".self::$selenium_test_page_path);
 		}
 		
 		/**
