@@ -22,7 +22,8 @@
 	require_once 'PHPUnit/Extensions/SeleniumTestCase.php';
 	require_once 'expectations/ExpectationsExpectations.php';
 	require_once 'expectations/TestSubjectExpectations.php';
-	require_once 'selenium_expectations/SeleniumDrivenUserExpectations.php';
+	require_once 'expectations/selenium_expectations/SeleniumDrivenUserExpectations.php';
+	require_once 'expectations/selenium_expectations/SeleniumActionsExpectations.php';
 
 	class ExpectationsSuite
 	{
@@ -32,7 +33,8 @@
 
 			$suite->addTestSuite('ExpectationsExpectations');
 	 		$suite->addTestSuite('TestSubjectExpectations');
-	 		$suite->addTestSuite('SeleniumDrivenUserExpectations');
+	 		$suite->addTestSuite('SeleniumActionsExpectations');
+	 		//$suite->addTestSuite('SeleniumDrivenUserExpectations');
 	 		return $suite;
 	    }
 	}

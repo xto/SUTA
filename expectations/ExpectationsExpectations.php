@@ -1,7 +1,7 @@
 <?php
 
 	 require_once 'src/Expectations.php';
-     
+
 	 class ExpectationsExpectations extends PHPUnit_Framework_TestCase
 	 {
 
@@ -216,7 +216,7 @@
         	{
         	}
         }
-        
+
         /**
          * @test
          */
@@ -226,8 +226,8 @@
         	$actual = $expected;
         	Expectations::shouldRaiseException($actual, $expected);
         }
-        
-        
+
+
 	     /**
          * @test
          */
@@ -242,11 +242,46 @@
             }catch (PHPUnit_Framework_ExpectationFailedException $e)
             {
             }
-           
+
         }
-        
-        
-        
+
+        /**
+         * @test
+         */
+        public function ShouldEqualShouldPassWhenTheTwoObjectsAreExactlyTheSame()
+        {
+            $Nick = new DummyUser("Nick",true);
+            $Xavier = new DummyUser("Xavier", false);
+            $Francis = new DummyUser("Francis", true);
+
+            $expected = array($Nick, $Xavier, $Francis);
+            $actual = array($Nick,$Xavier,$Francis);
+
+            Expectations::shouldEqual($actual,$expected);
+        }
+
+        /**
+         * @test
+         */
+        public function ShouldEqualShouldFailWhenTheTwoObjectsAreNotExactlyTheSame()
+        {
+            $Nick = new DummyUser("Nick",true);
+            $Xavier = new DummyUser("Xavier", false);
+            $Francis = new DummyUser("Francis", true);
+
+            $expected = array($Nick, $Xavier, $Francis);
+            $actual = array($Xavier,$Francis);
+
+            try{
+                Expectations::shouldEqual($actual,$expected);
+                throw new Expection("shouldNotEqual should fail when both elements are equal");
+            }
+            catch(PHPUnit_Framework_ExpectationFailedException $e)
+            {}
+        }
+
+
+
     }
 
 
