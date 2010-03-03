@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package packagerversion="0.1.2" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0                       http://pear.php.net/dtd/tasks-1.0.xsd                       http://pear.php.net/dtd/package-2.0                       http://pear.php.net/dtd/package-2.0.xsd">
+<package packagerversion="0.1.3" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0                       http://pear.php.net/dtd/tasks-1.0.xsd                       http://pear.php.net/dtd/package-2.0                       http://pear.php.net/dtd/package-2.0.xsd">
  <name>SUTA</name>
  <channel>pear.php.net</channel>
  <summary>DSL for PHPUnit and Selenium</summary>
@@ -22,11 +22,11 @@
   <email>ffalardeau@pyxis-tech.com</email>
   <active>yes</active>
 </lead>
- <date>2010-02-19</date>
- <time>17:00:00</time>
+ <date>2010-03-02</date>
+ <time>21:30:00</time>
  <version>
-  <release>0.1.2</release>
-  <api>0.1.2</api>
+  <release>0.1.3</release>
+  <api>0.1.3</api>
  </version>
  <stability>
   <release>beta</release>
@@ -44,6 +44,7 @@ http://github.com/xto/SUTA
    <file name="/SUTA/src/selenium_helper/SeleniumActions.php" role="php" />
    <file name="/SUTA/src/selenium_helper/SeleniumExecutionContext.php" role="php" />
    <file name="/SUTA/src/selenium_helper/SeleniumExpectations.php" role="php" />
+   <file name="/SUTA/src/selenium_helper/SeleniumExtendedDriver.php" role="php" />
   </dir>
  </contents>
  <dependencies>
