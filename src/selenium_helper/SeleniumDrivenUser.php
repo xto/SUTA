@@ -25,7 +25,12 @@
 		{
             $this->__seleniumExecutionContext->destroy();
 		}
-
+		
+		public function setJavascriptLibrary($javascriptLibrary)
+		{
+			$this->__seleniumExecutionContext->setJavascriptLibrary($javascriptLibrary);	
+		}
+		
 		function __call($method_name, $args)
         {
             if(method_exists($this->__seleniumActions, $method_name))

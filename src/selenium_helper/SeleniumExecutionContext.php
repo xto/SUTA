@@ -35,6 +35,11 @@
     	{
     	    return $this->__javascript_library;
     	}
+    	
+    	public function setJavascriptLibrary($javascriptLibrary)
+    	{
+    		$this->__javascript_library = $javascriptLibrary;
+    	}
 
         public function getSelenium()
         {

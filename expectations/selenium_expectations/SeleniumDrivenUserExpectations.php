@@ -193,13 +193,23 @@
 		/**
 		 * @test
 		 */
-		public function waitsForAjaxShouldWaitForAjaxRequestToEndBeforeContinuing()
+		public function waitsForAjaxShouldWaitForAjaxRequestToEndBeforeContinuingWithjQuery()
 		{
-                $timeout = 5000;
-
-		        self::$selenium_driven_user->clicks("//a[id('test_jQuery_link')]")
-		        ->and_then()->waitsForAjax($timeout);
-
+			$timeout = 5000;
+			self::$selenium_driven_user->setJavascriptLibrary("jQuery");
+	        self::$selenium_driven_user->clicks("//a[id('test_jQuery_link')]")
+	        ->and_then()->waitsForAjax($timeout);
+		}
+		
+		/**
+		 * @test
+		 */
+		public function waitsForAjaxShouldWaitForAjaxRequestToEndBeforeContinuingWithPrototype()
+		{			
+            $timeout = 5000;
+			self::$selenium_driven_user->setJavascriptLibrary("Prototype");
+	        self::$selenium_driven_user->clicks("//a[id('test_Prototype_link')]")
+	        ->and_then()->waitsForAjax($timeout);
 		}
 	}
 ?>
