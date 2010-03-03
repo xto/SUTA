@@ -204,12 +204,37 @@
 		/**
 		 * @test
 		 */
+		public function waitsForAjaxShouldThrowAnExceptionWhenItTimesOutWithjQuery()
+		{
+			$timeout = 0;
+			self::$selenium_driven_user->setJavascriptLibrary("jQuery");
+	        try
+	        {
+	        	self::$selenium_driven_user->clicks("//a[id('test_jQuery_link')]")
+	        	->and_then()->waitsForAjax($timeout);
+	        	self::fail("the waitForAjax should have timed out");
+	        }
+	        catch(SeleniumTimedOutException $e)
+	        {}
+		}
+		
+		/**
+		 * @test
+		 */
 		public function waitsForAjaxShouldWaitForAjaxRequestToEndBeforeContinuingWithPrototype()
 		{			
-            $timeout = 5000;
+            $timeout = 0;
 			self::$selenium_driven_user->setJavascriptLibrary("Prototype");
-	        self::$selenium_driven_user->clicks("//a[id('test_Prototype_link')]")
-	        ->and_then()->waitsForAjax($timeout);
+	        
+			try
+			{
+				self::$selenium_driven_user->clicks("//a[id('test_Prototype_link')]")
+		        ->and_then()->waitsForAjax($timeout);
+		        
+		        self::fail("the waitForAjax should have timed out");
+			}
+			catch(SeleniumTimedOutException $e)
+	        {}
 		}
 	}
 ?>
