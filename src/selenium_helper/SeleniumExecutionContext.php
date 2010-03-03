@@ -1,6 +1,6 @@
 <?php
 
-    require_once 'src/selenium_helper/SeleniumExtendedDriver.php';
+    require_once dirname(__FILE__).'/SeleniumExtendedDriver.php';
 
     class SeleniumExecutionContext
     {
@@ -35,7 +35,7 @@
     	{
     	    return $this->__javascript_library;
     	}
-    	
+
     	public function setJavascriptLibrary($javascriptLibrary)
     	{
     		$this->__javascript_library = $javascriptLibrary;
