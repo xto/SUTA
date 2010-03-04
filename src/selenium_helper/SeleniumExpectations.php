@@ -46,6 +46,13 @@
 			$this->__resetLastVisitedLocation();
 		}
 
+	    public function withValue($expected_text)
+		{
+			Expectations::shouldNotBeNull($this->__getLastVisitedLocation(),"No element was specified. Did you forget the call to shouldSee ?");
+			Expectations::shouldContain($expected_text,$this->__getSelenium()->getValue($this->__getLastVisitedLocation()));
+			$this->__resetLastVisitedLocation();
+		}
+
 		public function checked()
 		{
 			Expectations::shouldNotBeNull($this->__getLastVisitedLocation(),"No element was specified. Did you forget the call to shouldSee ?");

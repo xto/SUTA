@@ -1,6 +1,6 @@
 <?php
 	class Configuration {
-		private $SUTA_path = "/home/xto/projects/SUTA/";
+		private $SUTA_path = "/home/smpdev/SUTA/";
 		private $selenium_test_page_path = "expectations/selenium_expectations/selenium_test_page.html";
 
 		public function getSeleniumTestPagePath()

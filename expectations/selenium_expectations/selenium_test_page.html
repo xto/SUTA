@@ -12,7 +12,7 @@ jQuery(document).ready(function() {
 	jQuery('#test_jQuery_link').click(function()
 		{
 			jQuery.active = 1;
-			jQuery.sleep(3, function()
+			jQuery.sleep(5, function()
 		    {
 				jQuery.active = 0;
 		    });
@@ -20,14 +20,14 @@ jQuery(document).ready(function() {
 	);
 
 	jQuery('#test_Prototype_link').click(function()
+		{
+			Ajax.activeRequestCount = 1;
+			jQuery.sleep(5, function()
 			{
-				Ajax.activeRequestCount = 1;
-				jQuery.sleep(3, function()
-				{
-					Ajax.activeRequestCount = 0;
-				});
-			}
-);
+				Ajax.activeRequestCount = 0;
+			});
+		}
+	);
 
 });
 </script>
@@ -52,6 +52,11 @@ jQuery(document).ready(function() {
 <br />
 <br />
 <a id="test_jQuery_link" href="#" >jQuery ajax Link</a>
+<br />
 <a id="test_Prototype_link" href="#" >Prototype ajax Link</a>
+<br />
+<br />
+<label for="test_input_text"></label>
+<input id="test_input_text" type="text" />
 </body>
 </html>

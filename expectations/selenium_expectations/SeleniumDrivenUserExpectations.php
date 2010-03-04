@@ -190,6 +190,26 @@
 				self::$selenium_driven_user->shouldSee("//select/option[2]")->selected();
 		}
 
+
+		/**
+		 * @test
+		 */
+		public function waitsForAjaxShouldWaitForAjaxRequestToEndBeforeContinuingWithPrototype()
+		{
+            $timeout = 2;
+			self::$selenium_driven_user->setJavascriptLibrary("Prototype");
+
+			try
+			{
+				self::$selenium_driven_user->clicks("//a[id('test_Prototype_link')]")
+		        ->and_then()->waitsForAjax($timeout);
+
+		        self::fail("the waitForAjax should have timed out");
+			}
+			catch(SeleniumTimedOutException $e)
+	        {}
+		}
+
 		/**
 		 * @test
 		 */
@@ -200,7 +220,7 @@
 	        self::$selenium_driven_user->clicks("//a[id('test_jQuery_link')]")
 	        ->and_then()->waitsForAjax($timeout);
 		}
-		
+
 		/**
 		 * @test
 		 */
@@ -217,24 +237,15 @@
 	        catch(SeleniumTimedOutException $e)
 	        {}
 		}
-		
+
 		/**
 		 * @test
 		 */
-		public function waitsForAjaxShouldWaitForAjaxRequestToEndBeforeContinuingWithPrototype()
-		{			
-            $timeout = 0;
-			self::$selenium_driven_user->setJavascriptLibrary("Prototype");
-	        
-			try
-			{
-				self::$selenium_driven_user->clicks("//a[id('test_Prototype_link')]")
-		        ->and_then()->waitsForAjax($timeout);
-		        
-		        self::fail("the waitForAjax should have timed out");
-			}
-			catch(SeleniumTimedOutException $e)
-	        {}
+		public function withValueShouldSucceedIfValueMatchesParameter()
+		{
+		    self::$selenium_driven_user->fillsOut("//input[@id='test_input_text']")->with("value of input");
+
+			self::$selenium_driven_user->shouldSee("//input[@id='test_input_text']")->withValue("value of input");
 		}
 	}
 ?>
