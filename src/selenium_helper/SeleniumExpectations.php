@@ -60,6 +60,13 @@
 			$this->__resetLastVisitedLocation();
 		}
 
+		public function unchecked()
+		{
+		    Expectations::shouldNotBeNull($this->__getLastVisitedLocation(),"No element was specified. Did you forget the call to shouldSee ?");
+			Expectations::shouldBeFalse($this->__getSelenium()->isChecked($this->__getLastVisitedLocation()));
+			$this->__resetLastVisitedLocation();
+		}
+
 		public function selected()
 		{
 			Expectations::shouldEqual($this->__getSelenium()->getValue($this->__getLastVisitedLocation()), $this->__getSelenium()->getSelectedLabel($this->__getLastVisitedLocation()."/.."));

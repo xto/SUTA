@@ -247,5 +247,19 @@
 
 			self::$selenium_driven_user->shouldSee("//input[@id='test_input_text']")->withValue("value of input");
 		}
+
+	    /**
+         * @test
+        */
+        public function uncheckShouldUncheckACheckboxWhenCheckboxIsChecked()
+        {
+            self::$selenium_driven_user->clicks("//input[@name='test_radio']");
+			self::$selenium_driven_user->shouldSee("//input[@name='test_radio']")->checked();
+
+			self::$selenium_driven_user->unchecks("//input[@name='test_radio']");
+			self::$selenium_driven_user->shouldSee("//input[@name='test_radio']")->unchecked();
+
+        }
+
 	}
 ?>

@@ -74,7 +74,12 @@
 
         public function checks($checkbox_or_radio_button_locator)
         {
-            $this->clicks($checkbox_or_radio_button_locator);
+            $this->__getSelenium()->check($checkbox_or_radio_button_locator);
+        }
+
+        public function unchecks($checkbox_or_radio_button_locator)
+        {
+            $this->__getSelenium()->uncheck($checkbox_or_radio_button_locator);
         }
 
         public function selects($value)
