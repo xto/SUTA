@@ -15,17 +15,17 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-*/    
-    require_once 'Expectations.php';
-    
+*/
+    require_once dirname(__FILE__).'/Expectations.php';
+
     class TestSubject{
 
         private $__subject;
 
         public function __construct($subject)
         {
-            $this->__subject = $subject; 
-                
+            $this->__subject = $subject;
+
         }
 
         function __call($method_name, $args)
@@ -36,12 +36,12 @@
             }
             else if(method_exists(Expectations, $method_name))
             {
-                array_unshift($args,$this->__subject);                
+                array_unshift($args,$this->__subject);
                 return call_user_func_array( array(Expectations, $method_name), $args);
             }
             else
             {
-                throw new Exception('Unknown method '.$method_name."called on ".get_class($this->__subject)." instance.");	
+                throw new Exception('Unknown method '.$method_name."called on ".get_class($this->__subject)." instance.");
             }
         }
 
