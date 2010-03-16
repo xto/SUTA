@@ -1,4 +1,4 @@
-<?php
+l<?php
 /*
     Copyright 2010 Nicholas Lemay, Xavier Tô, Francis Falardeau
 
@@ -34,7 +34,7 @@
             {
 	            return new TestSubject(call_user_func_array( array($this->__subject, $method_name), $args));
             }
-            else if(method_exists(Expectations, $method_name))
+            else if(method_exists("Expectations", $method_name))
             {
                 array_unshift($args,$this->__subject);
                 return call_user_func_array( array(Expectations, $method_name), $args);
