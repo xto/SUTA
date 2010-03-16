@@ -37,7 +37,7 @@ l<?php
             else if(method_exists("Expectations", $method_name))
             {
                 array_unshift($args,$this->__subject);
-                return call_user_func_array( array(Expectations, $method_name), $args);
+                return call_user_func_array( array("Expectations", $method_name), $args);
             }
             else
             {
