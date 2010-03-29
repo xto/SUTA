@@ -185,7 +185,36 @@
 
         	try {
         		Expectations::shouldContain("tom", "petty");
-        		throw new Exception("shoulContain should fail if the pattern is not in the value");
+        		throw new Exception("shoudlContain should fail if the pattern is not in the value");
+        	}
+        	catch (PHPUnit_Framework_ExpectationFailedException $e)
+        	{
+        	}
+        }
+
+	 	/**
+        * @test
+        */
+        public function ShouldContainShouldFailOnEmptyStringsAsThePattern()
+        {
+            try {
+        		Expectations::shouldContain("", "TOM");
+        		throw new Exception("shoudlContain should fail if the pattern is an empty string");
+        	}
+        	catch (PHPUnit_Framework_Exception $e)
+        	{
+        	    Expectations::shouldContain("shouldBeEmpty", $e->getMessage());
+        	}
+        }
+
+	 	/**
+        * @test
+        */
+        public function ShouldContainShouldSucceedWhenLookingForAPatterninAnEmptyString()
+        {
+         	try {
+        		Expectations::shouldContain("tom", "");
+        		throw new Exception("shoudlContain should fail if the pattern is not in the value and the value is empty");
         	}
         	catch (PHPUnit_Framework_ExpectationFailedException $e)
         	{
@@ -274,13 +303,71 @@
 
             try{
                 Expectations::shouldEqual($actual,$expected);
-                throw new Expection("shouldNotEqual should fail when both elements are equal");
+                throw new Exception("shouldNotEqual should fail when both elements are equal");
             }
             catch(PHPUnit_Framework_ExpectationFailedException $e)
             {}
         }
 
+        /**
+         * @test
+         */
+        public function ShouldBeEmptyShouldSucceedWhenUsingOnEmptyString()
+        {
+            Expectations::shouldBeEmpty("");
+        }
 
+	 	/**
+         * @test
+         */
+        public function ShouldBeEmptyShouldSucceedWhenUsingOnEmptyArray()
+        {
+            Expectations::shouldBeEmpty(array());
+        }
+
+
+	 	/**
+         * @test
+         */
+        public function ShouldBeEmptyShouldFailWhenOnNotEmptyString()
+        {
+            try{
+                Expectations::shouldBeEmpty("This is not empty");
+                throw new Expection("shouldBeEmpty should fail when object is not empty");
+            }
+            catch(PHPUnit_Framework_ExpectationFailedException $e)
+            {}
+        }
+
+	 	/**
+         * @test
+         */
+        public function ShouldBeEmptyShouldFailWhenUsedOnNotEmptyArray()
+        {
+            try
+            {
+                Expectations::shouldBeEmpty(array(1,2,3,4));
+                throw new Expection("shouldBeEmpty should fail when object is not empty");
+            }
+            catch(PHPUnit_Framework_ExpectationFailedException $e)
+            {}
+        }
+
+        /**
+         * @test
+         */
+        public function ShouldBeEmptyShouldFailWhenUsedOnZero()
+        {
+            try
+            {
+                Expectations::shouldBeEmpty(0);
+                throw new Exception("shouldBeEmpty should fail when object is a zero");
+            }
+            catch(PHPUnit_Framework_Exception $e)
+            {
+                Expectations::shouldContain("shouldEqual",$e->getMessage());
+            }
+        }
 
     }
 

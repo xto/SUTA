@@ -52,6 +52,10 @@
 
         public static function shouldContain($pattern, $value, $message = '')
         {
+            if(empty($pattern))
+            {
+                throw new PHPUnit_Framework_Exception("Your pattern is an empty string. Use shouldBeEmpty() if that is what you really wanted.");
+            }
             self::assertContains($pattern, $value, $message);
         }
 
@@ -59,10 +63,24 @@
         {
             self::assertNotContains($pattern, $value, $message);
         }
-        
+
         public static function shouldRaiseException($actual, $expected, $message="")
         {
         	self::assertEquals(get_class($actual),get_class($expected), $message);
+        }
+
+        public static function shouldBeEmpty($value, $message = 'Value is not empty')
+        {
+            if(is_numeric($value) && !is_string($value))
+            {
+                throw new PHPUnit_Framework_Exception("The value is a numeric. Maybe you wanted to use shouldEqual or shouldNotEqual");
+            }
+
+            if(is_bool($value))
+            {
+                throw new PHPUnit_Framework_Exception("The value is a Boolean. Maybe you wanted to use shouldBeFalse or shouldBeTrue");
+            }
+            self::assertTrue(empty($value),$message);
         }
 
 	}
