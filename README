@@ -17,7 +17,7 @@ This type of syntax should hopefully help people who aren't developers understan
 
 
 As far as UnitTesting is concerned, we are trying to approach it with the BDD philosophy.
-Using this PHPUnit ADD-ON, the testing syntax for expectations now looks like this : 
+Using this PHPUnit Add-On, the testing syntax for expectations now looks like this : 
 
 $nicholas = new TestSubject(new DummyUser("Nicholas",true));
 $nicholas->getName()->shouldEqual("Nicholas");
