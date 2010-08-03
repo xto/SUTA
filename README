@@ -1,31 +1,59 @@
-This is just a preliminary commit of an idea for a DSL for PHPUnit. 
+Introducing SUTA for PHPUnit. 
 
-We needed something simple to write some tests and couldn't find anything to suit our needs.
 
-What we're trying to achieve is a simple syntax for unit test and eventually driving Selenium to do UI testing.
+Background : 
 
-The syntax will be something like
+-> We needed something simple to write some Acceptance tests in PHP and couldn't find anything to suit our needs.
 
-$context = new SeleniumExecutionContext("firefox","http://www.google.com");
+-> We are primarily interested in Web application so we decided to opt towards Selenium as the driver for our testing.
+
+-> We are Agile developers and are very found of user stories. We think that a DSL(domain specific language) for testing that is very close to the language of the Product Owner(client) is beneficial in making sure that we are building the right software. 
+
+-> Also, this enables none-programmers(QA experts) to write acceptance test easily against legacy code(untested code)
+
+
+Acceptance tests Example :
+
+Here is a pretty straightforward user story 
+
+As a User
+I want to be able to login
+In order to access my account page.
+
+With the following Conditions Of Success:
+The page is available only for registered users.
+The page is accessible through the /myAccount URL
+The Page displays the current invoice total
+
+The syntax for our SUTA test will be something like this :
+
+
+$context = new SeleniumExecutionContext("firefox","http://www.my-new-killer-app.com");
 $bob = new SeleniumDrivenUser($context);
 
-$bob->logs_in()->andThen()->fills_out(Field::username)->with("bob")->
+$bob->goesTo(Pages::Login)->andThen()->fills_out(Field::username)->with("bob")->
 andThen()->fills_out(Field::password)->with("qwerty")->
-andThen()->clicks(Button::login)->andThen()->shouldBeLoggedin();
+andThen()->clicks(Button::login)->andThen()->shouldBeOnPage(Pages::AccountPage);
 
-This type of syntax should hopefully help people who aren't developers understand and write some tests.
 
+This type of syntax should hopefully encourage people to write acceptance tests.
+
+Unit Test example 
 
 As far as UnitTesting is concerned, we are trying to approach it with the BDD philosophy.
+
 Using this PHPUnit Add-On, the testing syntax for expectations now looks like this : 
 
-$nicholas = new TestSubject(new DummyUser("Nicholas",true));
-$nicholas->getName()->shouldEqual("Nicholas");
+$thomas = new TestSubject(new DummyUser("Thomas"));
+$thomas->getName()->shouldEqual("Thomas");
 
 instead of : 
 
-$nicholas = new DummyUser("Nicholas",true);
-$this->assertEquals( $nicholas->getName(),"Nicholas");
+$thomas = new DummyUser("Thomas");
+$this->assertEquals( $thomas->getName(),"Thomas");
 
-More to come !
+We think this greatly improves readability. Plus moving the mindset from assertions to expectations, using "should" clearly states that tests should be written firsts.
+
+
+More to come ! 
 
